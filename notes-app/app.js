@@ -1,11 +1,4 @@
-//Challenge: define and use a function in a new file:
-//
-//1. create new file called notes.js
-//2. create getNotes function that returns "Your notes.."
-//3. Export getNotes function
-//4. from app.js, load in and call the function print message to console.
-
-const validator = require("validator");
+const chalk = require("chalk");
 
 const getNotes = require("./notes.js");
 
@@ -13,9 +6,8 @@ const getNotes = require("./notes.js");
 const msg = getNotes();
 
 console.log(msg);
-
-//Example using validator, console will print true
-console.log(validator.isEmail("duck@gmail.com"));
+//Order of methods irrelevent in chalk
+console.log(chalk.redBright.bold.inverse("Success!!!"));
 
 /* Additional Notes */
 //
@@ -26,3 +18,6 @@ console.log(validator.isEmail("duck@gmail.com"));
 // const sum = add(4, -2);
 
 // console.log(sum);
+
+//Example using validator, console will print true
+//console.log(validator.isEmail("duck@gmail.com"));
