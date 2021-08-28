@@ -8,6 +8,8 @@ const msg = getNotes();
 console.log(msg);
 //Order of methods irrelevent in chalk
 console.log(chalk.redBright.bold.inverse("Success!!!"));
+//object: process, method: argv- Argument Vector (an array of agruments provided)
+console.log(process.argv[2])//prints 3rd (string arg) listed in power shell
 
 /* Additional Notes */
 //
