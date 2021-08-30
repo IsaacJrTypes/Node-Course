@@ -1,16 +1,47 @@
 const chalk = require("chalk");
 
+const yargs = require("yargs");
+
 const getNotes = require("./notes.js");
 
-//Note call function before exe file, otherwise function is passed but not called
-const msg = getNotes();
+yargs.version("1.1.0");
 
-console.log(msg);
-//Order of methods irrelevent in chalk
-console.log(chalk.redBright.bold.inverse("Success!!!"));
-//object: process, method: argv- Argument Vector (an array of agruments provided)
-console.log(process.argv[2])//prints 3rd (string arg) listed in power shell
+//create add command
+yargs.command({
+  command: "add",
+  describe: "Add a new note",
+  handler: function () {
+    console.log("Adding a new note!");
+  },
+});
 
+//create remove command
+yargs.command({
+  command: "remove",
+  describe: "Removes note",
+  handler: function () {
+    console.log("Removes a note");
+  },
+});
+
+//create list command
+yargs.command({
+  command: "list",
+  describe: "lists your notes",
+  handler: function () {
+    console.log("Lists notes");
+  },
+});
+
+//create read command
+yargs.command({
+  command: "read",
+  describe: "Reads note",
+  handler: function () {
+    console.log("Reads notes");
+  },
+});
+console.log(yargs.argv);
 /* Additional Notes */
 //
 //use require with '.' means current level path (this directory), '/' means root level, then specify file (within root level) to execute
@@ -23,3 +54,6 @@ console.log(process.argv[2])//prints 3rd (string arg) listed in power shell
 
 //Example using validator, console will print true
 //console.log(validator.isEmail("duck@gmail.com"));
+
+//Note call function before exe file, otherwise function is passed but not called
+//const msg = getNotes();
