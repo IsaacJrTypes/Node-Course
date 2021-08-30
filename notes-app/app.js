@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const { demandOption } = require("yargs");
 
 const yargs = require("yargs");
 
@@ -10,8 +11,21 @@ yargs.version("1.1.0");
 yargs.command({
   command: "add",
   describe: "Add a new note",
-  handler: function () {
-    console.log("Adding a new note!");
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+    body: {
+      describe: "Body of Note",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: function (argv) {
+    console.log("Title: " + argv.title);
+    console.log("Body: " + argv.body);
   },
 });
 
@@ -41,7 +55,9 @@ yargs.command({
     console.log("Reads notes");
   },
 });
-console.log(yargs.argv);
+
+yargs.parse(); //parses all args created
+
 /* Additional Notes */
 //
 //use require with '.' means current level path (this directory), '/' means root level, then specify file (within root level) to execute
