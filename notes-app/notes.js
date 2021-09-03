@@ -23,6 +23,10 @@ const addNote = function (title, body) {
   }
 };
 
+const removeNote = function (title) {
+  console.log(title);
+};
+
 const savedNotes = function (notes) {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON); //saves stringified data of note
@@ -43,4 +47,5 @@ module.exports = {
   //exports object with properties and values as functions
   getNotes: getNotes,
   addNote: addNote,
+  removeNote: removeNote,
 };
