@@ -28,6 +28,7 @@ const addNote = function (title, body) {
 
 const removeNote = function (title) {
   const notes = loadNotes();
+  //.filter method creates new array depending on parameters
   const notesToKeep = notes.filter(function (note) {
     return note.title !== title; //Returns true if titles are not a match
   });
