@@ -22,3 +22,5 @@ const event = {
 };
 
 event.printGuestList()
+
+//power off nodemon with CTRL + C
