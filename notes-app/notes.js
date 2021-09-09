@@ -3,15 +3,17 @@ const chalk = require("chalk");
 //const { callbackify } = require("util");
 
 const getNotes = () => {
-  return "Your notes.."
+  return "Your notes..";
 };
 
 const addNote = (title, body) => {
   const notes = loadNotes(); //loads notes
-  //find duplicate of notes and returns true if titles are duplicates
+  //find duplicate of notes and returns true if titles are duplicates (searches all notes w/o stopping)
   const duplicateNotes = notes.filter((note) => note.title === title);
+  //find duplicate of note and stop once match found
+  const duplicateNote = notes.find((note)=> note.title === title)
 
-  if (duplicateNotes.length === 0) {
+  if (!duplicateNote) {
     notes.push({
       //pushes/changes an object with properties with command prompt inputs
       title: title,
@@ -42,7 +44,7 @@ const savedNotes = (notes) => {
   fs.writeFileSync("notes.json", dataJSON); //saves stringified data of note
 };
 
-const loadNotes = function () {
+const loadNotes = () => {
   try {
     //loads notes from notes.json
     const dataBuffer = fs.readFileSync("notes.json");
@@ -53,9 +55,18 @@ const loadNotes = function () {
   }
 };
 
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log(chalk.yellow.inverse("Your Notes: "));
+  notes.forEach((note) => {
+    console.log(note.title);
+  });
+};
+
 module.exports = {
   //exports object with properties and values as functions
   getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
+  listNotes: listNotes,
 };
