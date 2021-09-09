@@ -1,5 +1,7 @@
 const fs = require("fs");
 const chalk = require("chalk");
+const { title } = require("process");
+const { error } = require("console");
 //const { callbackify } = require("util");
 
 const getNotes = () => {
@@ -11,7 +13,7 @@ const addNote = (title, body) => {
   //find duplicate of notes and returns true if titles are duplicates (searches all notes w/o stopping)
   const duplicateNotes = notes.filter((note) => note.title === title);
   //find duplicate of note and stop once match found
-  const duplicateNote = notes.find((note)=> note.title === title)
+  const duplicateNote = notes.find((note) => note.title === title);
 
   if (!duplicateNote) {
     notes.push({
@@ -28,7 +30,7 @@ const addNote = (title, body) => {
 
 const removeNote = (title) => {
   const notes = loadNotes();
-  //.filter method creates new array depending on parameters and returns true if titles are not a match
+  //filter method creates new array depending on parameters and returns true if titles are not a match
   const notesToKeep = notes.filter((note) => note.title !== title);
 
   if (notes.length > notesToKeep.length) {
@@ -63,10 +65,21 @@ const listNotes = () => {
   });
 };
 
+const readNote = (title) => {
+  const notes = loadNotes();
+  const note = notes.find((note) => note.title === title);
+  if (note) {
+    console.log(chalk.inverse.magenta(note.title));
+    console.log(note.body);
+  } else {
+    console.log(chalk.redBright.inverse("No note found!"));
+  }
+};
 module.exports = {
   //exports object with properties and values as functions
   getNotes: getNotes,
   addNote: addNote,
   removeNote: removeNote,
   listNotes: listNotes,
+  readNote: readNote,
 };
